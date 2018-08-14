@@ -3,13 +3,13 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ch.tbmelabs</groupId>
-  <artifactId>tv</artifactId>
+  <groupId>ch.tbmelabs.tv</groupId>
+  <artifactId>constants</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
-  <name>TBME TV</name>
-  <description>Free to use streaming application.</description>
+  <name>TBME TV | Constants</name>
+  <description>TBME-TV's constant expressions.</description>
 
   <properties>
     <!-- General configuration -->
@@ -56,12 +56,6 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.0.3.RELEASE</version>
   </parent>
-
-  <modules>
-    <module>shared</module>
-    <module>core-server</module>
-    <module>cloud-services</module>
-  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -222,7 +216,7 @@
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
-    
+
     <repository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
