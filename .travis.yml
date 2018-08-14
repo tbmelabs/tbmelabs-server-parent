@@ -14,6 +14,11 @@ branches:
   - master
   - development
 
+deploy:
+  provider: script
+  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && ./scripts/deploy.sh"
+  skip_cleanup: true
+
 addons:
   sonarcloud:
     organization: "tbmelabs-github"
