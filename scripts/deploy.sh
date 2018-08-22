@@ -1,13 +1,8 @@
 #!/bin/bash
-# Deployment script for tbmelabs-tv-constants
-# Code open source hosted on: https://github.com/tbmelabs/tbmelabs-tv-constants
+# Deployment script for TBME Labs Actuator Endpoints Security Utils
+# https://github.com/tbmelabs/actuator-endpoints-security-utils
 
-set -ev
-
-if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]]; then
-  # mvn versions:set deploy -DremoveSnapshot -DskipTests=true
-elif [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
-  mvn deploy -DskipTests=true
+if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]] ; then
+  mvn clean versions:set deploy -Psign,build-extras -DremoveSnapshot -DskipTests
 fi
 
-exit $?
