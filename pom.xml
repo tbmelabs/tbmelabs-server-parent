@@ -4,12 +4,36 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.tbmelabs</groupId>
-  <artifactId>actuator-endpoints-security-utils</artifactId>
+  <artifactId>parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
-  <name>Actuator Endpoints Security Utils</name>
-  <description>Utilities to secure actuator endpoints.</description>
+  <name>TBME Labs | Parent</name>
+  <description>TBME Labs specific plugin configuration.</description>
+  <url>https://github.com/tbmelabs/tbmelabs-parent</url>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/tbmelabs/tbmelabs-bom</url>
+    <connection>scm:git:git://github.com/tbmelabs/tbmelabs-bom.git</connection>
+    <developerConnection>scm:git:git@github.com:tbmelabs/tbmelabs-bom.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>TBME Labs</name>
+      <email>info@tbmelabs.ch</email>
+      <organization>TBME Labs</organization>
+      <organizationUrl>tbmelabs.ch</organizationUrl>
+    </developer>
+  </developers>
 
   <properties>
     <!-- General configuration -->
@@ -18,47 +42,32 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Dependency configuration -->
-    <org.mockito.mockito-core.version>2.9.0</org.mockito.mockito-core.version>
+    <org.mockito.mockito-core.version>2.21.0</org.mockito.mockito-core.version>
 
     <!-- Plugin configuration -->
-    <com.spotify.docker-maven-plugin.version>1.1.1</com.spotify.docker-maven-plugin.version>
-    <org.jacoco.jacoco-maven-plugin.version>0.8.1</org.jacoco.jacoco-maven-plugin.version>
-
-    <!-- Test coverage configuration -->
-    <project.build.test-result-directory>${project.build.directory}/test-results</project.build.test-result-directory>
-
-    <org.jacoco.jacoco-maven-plugin.dest-file-path>${project.build.test-result-directory}/coverage/jacoco/jacoco.exec</org.jacoco.jacoco-maven-plugin.dest-file-path>
-    <org.jacoco.jacoco-maven-plugin.output-path>${project.build.test-result-directory}/coverage/jacoco</org.jacoco.jacoco-maven-plugin.output-path>
-
-    <!-- Sonar configuration -->
-    <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-    <sonar.issue.ignore.multicriteria>S2068a,S2068b</sonar.issue.ignore.multicriteria>
-    <sonar.issue.ignore.multicriteria.S2068a.ruleKey>squid:S2068</sonar.issue.ignore.multicriteria.S2068a.ruleKey>
-    <sonar.issue.ignore.multicriteria.S2068a.resourceKey>**/UserSignupService.java</sonar.issue.ignore.multicriteria.S2068a.resourceKey>
-    <sonar.issue.ignore.multicriteria.S2068b.ruleKey>squid:S2068</sonar.issue.ignore.multicriteria.S2068b.ruleKey>
-    <sonar.issue.ignore.multicriteria.S2068b.resourceKey>**/ClientGrantType.java</sonar.issue.ignore.multicriteria.S2068b.resourceKey>
-
-    <!-- Sonar report paths for sonar-server >= 6.2 -->
-    <sonar.jacoco.reportPaths>${project.build.test-result-directory}/coverage/jacoco/jacoco.exec</sonar.jacoco.reportPaths>
-    <sonar.javascript.lcov.reportPaths>${project.build.test-result-directory}/coverage/report-lcov/lcov.info</sonar.javascript.lcov.reportPaths>
-
-    <!-- Sonar report paths for sonar-server < 6.2 -->
-    <sonar.jacoco.reportPath>${sonar.jacoco.reportPaths}</sonar.jacoco.reportPath>
-    <sonar.javascript.lcov.reportPath>${sonar.javascript.lcov.reportPaths}</sonar.javascript.lcov.reportPath>
+    <org.apache.maven.plugins.maven-failsafe-plugin.version>2.22.0</org.apache.maven.plugins.maven-failsafe-plugin.version>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.0.1</org.apache.maven.plugins.maven-javadoc-plugin.version>
+    <org.apache.maven.plugins.maven-gpg-plugin.version>1.6</org.apache.maven.plugins.maven-gpg-plugin.version>
+    <org.apache.maven.plugins.maven-source-plugin.version>3.0.1</org.apache.maven.plugins.maven-source-plugin.version>
+    <org.apache.maven.plugins.maven-surefire-plugin.version>2.22.0</org.apache.maven.plugins.maven-surefire-plugin.version>
+    <org.codehaus.mojo.versions-maven-plugin.version>2.5</org.codehaus.mojo.versions-maven-plugin.version>
+    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
   </properties>
-
-  <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.3.RELEASE</version>
-  </parent>
 
   <dependencyManagement>
     <dependencies>
+      <!-- DOTO: Update on release -->
+      <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/bom/ -->
+      <dependency>
+        <groupId>ch.tbmelabs</groupId>
+        <artifactId>bom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
       <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -71,46 +80,12 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-security -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-security</artifactId>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/ch.tbmelabs/actuator-endpoints-security-utils -->
-    <dependency>
-      <groupId>ch.tbmelabs.tv.shared</groupId>
-      <artifactId>constants</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <!-- Do not remove this! Mockito < 2.0 is required. -->
       <version>${org.mockito.mockito-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -124,12 +99,29 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
+        <version>${org.codehaus.mojo.versions-maven-plugin.version}</version>
+      </plugin>
+
+      <!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
+
+        <extensions>true</extensions>
+
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
 
       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
 
         <executions>
           <execution>
@@ -158,6 +150,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${org.apache.maven.plugins.maven-failsafe-plugin.version}</version>
 
         <executions>
           <execution>
@@ -177,59 +170,99 @@
           </execution>
         </executions>
       </plugin>
-
-      <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>${org.jacoco.jacoco-maven-plugin.version}</version>
-
-        <executions>
-          <!-- download and install JaCoCo agent -->
-          <execution>
-            <id>prepare-agent</id>
-
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-
-            <configuration>
-              <destFile>${org.jacoco.jacoco-maven-plugin.dest-file-path}</destFile>
-            </configuration>
-          </execution>
-
-          <!-- report test coverage -->
-          <execution>
-            <id>post-unit-test</id>
-            <phase>test</phase>
-
-            <goals>
-              <goal>report</goal>
-            </goals>
-
-            <configuration>
-              <dataFile>${org.jacoco.jacoco-maven-plugin.dest-file-path}</dataFile>
-              <outputDirectory>${org.jacoco.jacoco-maven-plugin.output-path}</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
-  <reporting>
-    <plugins>
-      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <show>public</show>
-          <nohelp>true</nohelp>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
+  <profiles>
+    <profile>
+      <id>sign</id>
+
+      <build>
+        <plugins>
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
+
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+
+                <phase>verify</phase>
+
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>build-extras</id>
+
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <plugins>
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
+
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
+
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <repositories>
+    <repository>
+      <id>ossrh-snapshot</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </repositories>
 
   <distributionManagement>
     <snapshotRepository>

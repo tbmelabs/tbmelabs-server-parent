@@ -1,9 +1,9 @@
-# Actuator-Endpoints-Security-Utils
+# TBME Labs Parentx
 
-Utilities to secure actuator endpoints.
+TBME Labs specific plugin configuration.
 
-[![Build Status](https://travis-ci.org/tbmelabs/actuator-endpoints-security-utils.svg?branch=master)](https://travis-ci.org/tbmelabs/actuator-endpoints-security-utils)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9eae98d8d1d4915b8f56ab8e7ce8d7b)](https://www.codacy.com/app/bbortt_2/actuator-endpoints-security-utils?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tbmelabs/actuator-endpoints-security-utils&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/tbmelabs/tbmelabs-parent.svg?branch=master)](https://travis-ci.org/tbmelabs/tbmelabs-parent)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9eae98d8d1d4915b8f56ab8e7ce8d7b)](https://www.codacy.com/app/bbortt_2/tbmelabs-parent?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tbmelabs/tbmelabs-parent&amp;utm_campaign=Badge_Grade)
 
 ## Getting Started
 
@@ -50,4 +50,4 @@ See also the list of [contributors](https://github.com/tbmelabs/tbme-tv/contribu
 
 ## License
 
-This project is published under the terms of MIT License. For more information see the [license file](https://github.com/tbmelabs/actuator-endpoints-security-utils/blob/development/LICENSE).
+This project is published under the terms of MIT License. For more information see the [license file](https://github.com/tbmelabs/tbmelabs-parent/blob/development/LICENSE).
