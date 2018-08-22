@@ -15,21 +15,42 @@ branches:
   - development
 
 deploy:
-  provider: script
-  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && ./scripts/deploy.sh"
-  skip_cleanup: true
+  - provider: script
+    script: bash scripts/deploy.sh
+    on:
+      branch: master
+  - provider: script
+    script: bash scripts/deploy-snapshot.sh
+    on:
+      branch: development
 
-addons:
-  sonarcloud:
-    organization: "tbmelabs-github"
-    token:
-      secure: ${SONAR_TOKEN}
+env:
+  global:
+    - secure: "IScCJgWLwVUjdzNC2Rkcnfc9dIuK5jAHYLHbyAOJaqbAENY1l28xkjjKQVM2JXajoW0dKex1U+LGUP9xBGcT2ao6/Dxp3asEge2dCZ2PlZYfxwqCEgaa893hPAuBx/QyYS4yFKL78BZm1eB2x1YMORO3DnnZ/2l+NiqiuXJmHK3bakB2bchs+Kx0lCWZmDtISrOGVyJjAF5U/H3/eP7EbkYLOQ9jrJhfzrcY/d52oY6in3tVqKwteo/3oapcAdFVKqbsdCMrJzQ/iS//glWq0VpDESuI5t32ha7IEDgK7T/fvZxCSDalhLjpACTvC4QAvCSfz8k7muBThxYwHFUb/oV5jmLfSydNJDmVn+BE85Wquq2PjuvAIR06prbgtXjwO1hHSszbETdPoqQ9aqy4lP3tt0lmMm09FvfepcSwbgtkFW1+9P7VasE1PBYXWoTV/SLX5+oPRMnpMjqrSvEYreRrNPjZJG1duVwOb84WWM+G21ud9XFyDiybtZaPmBGBDEZFrxxs2ZxydqE6k4BEg09OoMbILDsKGw0TGbK6QZK1Wjv3dQnn40wdTvfLlLDVtLnV/LF7t1kxxdKlEDleaTW0oAhsG4IOAxMq5Y2US0KbMirXbfaR1trI7IeTh3C1SUk57D3RgcdSEbf4hIOrVIMMMH8UKEQsV2wKIAI2pT4="
+    # ^^ GITHUB_USERNAME
+    - secure: "D9VFgFd8+FNVe63aqxf9obGk7Dw02dV3KRLjnRimESmTXM1t0mKjCRLChMM1G0F1aTSfUJKh10Ls+FgB/GPz279gBVbGYmUHenSVACy2EjJQPJx+Xgt6g7GSxisy4COeH8xk1kcLy5xaYp4wAn6S2cEtpSoYmOHJ1GzXBKSSUudw30nF5uYNm3b+wqWS7UMYZlZtFun4J0lGB6/l8++/nveFbkJcp0QEAizeaQbgxCsbhQCwBB25ZvNHSjQGATiXT+RMIESpEbL2VnB6S9HFw831+UKizG1DZxvxxi39bFjhR+850xZcrmTMJR/Z4TZQ396AFa3slDjeBCqLBrPXXMUqgccsptrZpYo3C/4KCOzkH25Am8SELIJOb05eJ1AC54XwdroYlF2PVTXgESVIipFOUA3AEEE2SoXJB8aybH95ZXRvhujd2EWUDZgbamd/u3ZQQOyaD0HFpea/PtpDxIHMb9hxRW634+KhKgnc9G05o29J+4SuUsK1G/tiE7nbBTuKQRBgxQn+Mrz2y4duKBuMGJtyiZR8vhxLKMJx1xUfXUgGRxMif3S67ekMJTFgWJNCKREPqKF82iW2MlCNwSxW80GE+f/U5HoyQhqFnDS8w93svmhIPTZ3YfEdHsWjlobYUNiVV1u7wOxGGBi5/YMYl79japcuplD56oT45Hg="
+    # ^^ GITHUB_ACCESS_TOKEN
+    - secure: "ht8vVNnj1g2LfHj4sqUr8RvtHBWctVG/AikhFncdwPIv/rOyax6LpouktsUKwpQHjGL6Zj5QdjtZLLsyAF0VHedXsMWRcejdTiooVzCInXx8RRu2MdmFUIe+zx4ftL2yD70blNBWieUtMnzJIIJGdrfz+IUp+EuoOSnsOyZv9scHwEyleQse48uzvmHIhzDB3v89xhTGyHuPjTDsT21yOzQyu6fHKrqkPTVNP2EmSvC9GAHyAS9rc9lHcRZs1kglqSSVNjhKtcQ+JohbMZfujr+dN3YEma93042PGxiTmT+GAEW7p5Jq1VcHhH/80Rk5J/LJlTMXkHWikvPrvWE5nWQsbkZ5Z1iZSg36TpvmM34lfhnrs3OtoRY7QUTiTM8PchFZD2A7TbtFanCtgn4FCaFU02PhhJNbF2LyfRHH1B4ZtmSJz5kDpNZQIrn/pkF29rsT/G/XmDZNTbEcBPkNU7HfAUKue9M+YGbdRbGYdGIqQaOUbVkk+i+oEgCusVWpZwQ+F8y8VFuTPopQZaLliuydeqAqvmYTWesbeD7PHZunRtQUM2oaEBa/aLHPvw9SVgp/rUn86FFN3EvHOIjpwd5HRnh/maLakfEvqIhbOc4hEcGN1NRi8Sf8+MY0cgJmkw9FrYp4nkNblNL4VPhCRn/snyUQ4LhXumu3mKN5NXA="
+    # ^^ OSSRH_JIRA_USERNAME
+    - secure: "loS25Q2rRmmsRqCnXwguEqh2Lb8sw2N5/MYcjksCm2YDzR/LndhzgLRUWnvEPMohFYEU35y6xZw0ocUrnGNjRc4Yt11iiZgIlXwLvSYLVKdxezu1Huq6jbDfBqAtU8glpMQuLZGXq9QzqXeEfv/1A5KC87CTWOeReSdXW7twDmQ9y9Sc1haZxAswxaMj3pNDBlJE91b0CWfRk5Gjov6rXpDSN36Ro6IYqcGjZtZLYM2W7SC64fUlcgzO96FQLBYoC5rPKNjTJ/GSt7YuO6wU6Ykn+s+hxcnbka8KPf/vtHP4ySQiW3TvWLWexKYOlRGj6k/DClVBTARMbO1XoZINkIS6VnwzO1sYPhWCCprn+VI5ijNk/znrUuxIgzhBx6mBZrr9RHJIfFkzHHDhTPbi2CRyHxpU2aiCcuQpo3wFZ6QSASVa2KCx4r+HSFdklapBaCyrivlUE+jJFV+GpBTcrepG5KQk9H0JgolRjfpF6Mw7rjSZA3Aw1x3Rh6qJETnBnxmizyXNH95HVD4Ss70rYrDDjPJTF1xkLKNaHOS6YYvidZqQR+b1y6oghTYrRkjAXRVoAVJHz10lhKeiy03YcFxdMfoVIhdiBtWQhmsNWRBLqlv+Lzj8o42TcZuY0lwiysHNpVFFF5c2d47bc/ohjX7B6JbzN6iU6pNdf2zaT3E="
+    # ^^ OSSRH_JIRA_PASSWORD
+    - secure: "G2GAdTAjFiaZB2/aGKfxegYeD2yfrQ8fby8ovOG2mZMI0ZlSa8gtikQHzqBPbUATT4irTIRdIIcD9v7N0qBjXVii8atczhprWMuqld4QONLMDlz0a3tvy4rtQ2dujXvh4xafCg4ZWjh0Qtwm7FR+VkKoou19hrAGwLdJxsdJHbfPgHzCF8Sk4dqePxxT3W/yn0DggzA+ozX9dcInEA7ZQcBHhItGFl9Ovnzzk/JQYdLxJst8FzitvXgyWvh4Kme/mXPVRJ2xTmjEE9QtlGzRu1OHuxDrSunZuS1YF0tK9DIGvSBpOyJStTryfxnpffIMWUSwy+oa/WfJ3aCjIBpz/NVL0JBO09egEY2tUaOSGqZd4RNx/udv8jiBitdfZb86UbhpBs+hK6HlhtrTULIqWEAeA5uhOo83SlUhKo1xhDFXmzX/hdOmNvaECRbHN3y5QZoq7cgLwC7l19kpzw4HDkDSnhgvs7llLY9NhXPuHnC6JIlHcQj9pty2NzDtuqiTh+xQI5DmQiGXLAMx/UUYvoIESHMXezuKUqWy++zeAHaBjT/fC2KXJwKgNfty1jUKWQ5gNOpfedtHbNUKaGSr7BBhjKwizcBHDByiAxR2fjR1/+zreEu1SS6dCHw0PBt7+jMKqj8gMz4Jg3X/Zhopl+9FSHe3g36oTy+ww1CFwHU="
+    # ^^ GPG_KEY_NAME
+    - secure: "K3XOLIsW5d8+zJ5ldWPGberlMCzmdddGo8B0f9+tX5CCTld68Yt4YDCstLcLjOzz/L2GhnA8NBtOEmMkrPWytcN8img/ldRFpM5m97uOKLGvTvMOGLHuN2TiWnSxmMGQfbORG5zdqltCbiX/5aQ7pqO1BVW+6soZnTq3jsV3cVFEgwXdI26YX/Pe+lFcjl9kfdjkDUdGytxkFQ4U33uOVIUdAG1Wo7PHAYLzreZh7CytOOp2hZUDx6QK7DzP/HmG9js/CCLHimHdNmp8qXd0JTBIQv9QCgDNe1C/GrnZqhkK8h9Ik2VGKWrE+0bJlp8PZw0RTOe6ytLj5WamXMPJePQcIwwzemgP20t83pGQrqr2nzUE5twp3F2xzhT9yoTYNN7AIS+w0x1TnUpu9RSPyjdPTvj9uVotLJaZTnA1/+QLEm3FZE6AD++wLY9UblOD/tG4jVR6qhTeFZ5WODSJBC+O1jtEj0LcYG9YdnT+QVJxTLktR1lUBeBtJ4O701YlYSloFbLBXy3cmFP4IFx6csf9+C2+mY84p9enADh4aV8WN2ZnM5yHBDOpYitLFIS7c0d/QiBjyvUZwWM11zOesrLlDCGlAaXjwsgIicyj/RwdhlCfAe8geS7NrF1ip6lTsWOJq+99IiTRNGfesq1QZbmHaOQOLWBXW07P4e2BVz8="
+    # ^^ GPG_PASSPHRASE
+
+before_script:
+  - git clone https://${GITHUB_USERNAME}:${GITHUB_ACCESS_TOKEN}@github.com/mirioeggmann/tbmelabs-deploy-certificates.git
+  - gpg --fast-import tbmelabs-deploy-certificates/tbmelabs-deploy-key.asc
+  - cp .travis.settings.xml $HOME/.m2/settings.xml
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn clean verify
+
+after_script:
+  - rm -rf tbmelabs-deploy-certificates
 
 cache:
   directories:
     - "$HOME/.cache"
     - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
