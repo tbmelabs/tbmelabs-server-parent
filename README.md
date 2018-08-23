@@ -5,26 +5,20 @@ TBME Labs specific plugin configuration.
 [![Build Status](https://travis-ci.org/tbmelabs/tbmelabs-parent.svg?branch=master)](https://travis-ci.org/tbmelabs/tbmelabs-parent)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9eae98d8d1d4915b8f56ab8e7ce8d7b)](https://www.codacy.com/app/bbortt_2/tbmelabs-parent?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tbmelabs/tbmelabs-parent&amp;utm_campaign=Badge_Grade)
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](https://github.com/tbmelabs/tbme-tv/tree/master#deployment) for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 Make sure to install the following software before starting:
 
 * [Java Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html): [This guide](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html) leads you through the installation.
 * [Maven](https://maven.apache.org/download.cgi): Have a look at [this page](https://maven.apache.org/install.html) for any help while installing.
-* [Project Lombok](https://projectlombok.org/): Take a look on [this pages](https://projectlombok.org/setup/eclipse) for installation guides.
 
 ### Installing
 
-Make sure your IDE supports Lombok. Apart from this, this project does not need any special installation steps.
+This project does not need any special installation steps.
 
 ## Running the tests
 
-Execute unit-tests by running `mvn test`. They are managed by the [maven-surefire-plugin](https://maven.apache.org/surefire/maven-surefire-plugin/).
-Integration-tests start with `mvn verify` using the [maven-failsafe-plugin](https://maven.apache.org/surefire/maven-failsafe-plugin/).
+There are no tests associated with this project.
 
 ## Deployment
 
