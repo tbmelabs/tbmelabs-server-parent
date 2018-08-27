@@ -2,8 +2,8 @@
 
 TBME Labs specific plugin configuration.
 
-[![Build Status](https://travis-ci.org/tbmelabs/tbmelabs-parent.svg?branch=master)](https://travis-ci.org/tbmelabs/tbmelabs-parent)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9eae98d8d1d4915b8f56ab8e7ce8d7b)](https://www.codacy.com/app/bbortt_2/tbmelabs-parent?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tbmelabs/tbmelabs-parent&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/tbmelabs/tbmelabs-server-parent.svg?branch=master)](https://travis-ci.org/tbmelabs/tbmelabs-server-parent)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d9eae98d8d1d4915b8f56ab8e7ce8d7b)](https://www.codacy.com/app/bbortt_2/tbmelabs-server-parent?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tbmelabs/tbmelabs-server-parent&amp;utm_campaign=Badge_Grade)
 
 ### Prerequisites
 
@@ -44,4 +44,4 @@ See also the list of [contributors](https://github.com/tbmelabs/tbme-tv/contribu
 
 ## License
 
-This project is published under the terms of MIT License. For more information see the [license file](https://github.com/tbmelabs/tbmelabs-parent/blob/development/LICENSE).
+This project is published under the terms of MIT License. For more information see the [license file](https://github.com/tbmelabs/tbmelabs-server-parent/blob/development/LICENSE).
