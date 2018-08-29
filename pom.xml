@@ -3,7 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>ch.tbmelabs</groupId>
     <artifactId>server-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>TBME Labs | Server Parent</name>
@@ -33,13 +35,57 @@
         </developer>
     </developers>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
     <parent>
-        <!-- DOTO: Update on release -->
-        <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/parent/ -->
-        <groupId>ch.tbmelabs</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
     </parent>
+
+    <properties>
+        <ch.tbmelabs.version>1.0.0-SNAPSHOT</ch.tbmelabs.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- DOTO: Update on release -->
+            <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/bom/ -->
+            <dependency>
+                <groupId>ch.tbmelabs</groupId>
+                <artifactId>bom</artifactId>
+                <version>${ch.tbmelabs.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-oauth2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+        <!-- DOTO: Update on release -->
+        <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/server-constants/ -->
+        <dependency>
+            <groupId>ch.tbmelabs</groupId>
+            <artifactId>server-constants</artifactId>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>
