@@ -1,105 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.tbmelabs</groupId>
-    <artifactId>server-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.tbmelabs</groupId>
+	<artifactId>server-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <name>TBME Labs | Server Parent</name>
-    <description>TBME Labs specific server plugins configuration.</description>
-    <url>https://github.com/tbmelabs/tbmelabs-server-parent</url>
+	<name>TBME Labs | Server Parent</name>
+	<description>TBME Labs specific server plugins configuration.</description>
+	<url>https://github.com/tbmelabs/tbmelabs-server-parent</url>
 
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-    <scm>
-        <url>https://github.com/tbmelabs/tbmelabs-server-parent</url>
-        <connection>scm:git:git://github.com/tbmelabs/tbmelabs-server-parent.git</connection>
-        <developerConnection>scm:git:git@github.com:tbmelabs/tbmelabs-server-parent.git</developerConnection>
-    </scm>
+	<scm>
+		<url>https://github.com/tbmelabs/tbmelabs-server-parent</url>
+		<connection>scm:git:git://github.com/tbmelabs/tbmelabs-server-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:tbmelabs/tbmelabs-server-parent.git</developerConnection>
+	</scm>
 
-    <developers>
-        <developer>
-            <name>TBME Labs</name>
-            <email>info@tbmelabs.ch</email>
-            <organization>TBME Labs</organization>
-            <organizationUrl>tbmelabs.ch</organizationUrl>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>TBME Labs</name>
+			<email>info@tbmelabs.ch</email>
+			<organization>TBME Labs</organization>
+			<organizationUrl>tbmelabs.ch</organizationUrl>
+		</developer>
+	</developers>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.4.RELEASE</version>
-    </parent>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.4.RELEASE</version>
+	</parent>
 
-    <properties>
-        <ch.tbmelabs.version>1.0.0-SNAPSHOT</ch.tbmelabs.version>
-    </properties>
+	<properties>
+		<!-- General configuration -->
+		<buildNumber>${maven.build.timestamp}</buildNumber>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- DOTO: Update on release -->
-            <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/bom/ -->
-            <dependency>
-                <groupId>ch.tbmelabs</groupId>
-                <artifactId>bom</artifactId>
-                <version>${ch.tbmelabs.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+		<!-- TBME Labs specific configuration -->
+		<ch.tbmelabs.version>1.0.0-SNAPSHOT</ch.tbmelabs.version>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+		<!-- Dependency configuration -->
+		<org.reflections.reflections.version>0.9.11</org.reflections.reflections.version>
+	</properties>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+	<dependencyManagement>
+		<dependencies>
+			<!-- DOTO: Update on release -->
+			<!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/bom/ -->
+			<dependency>
+				<groupId>ch.tbmelabs</groupId>
+				<artifactId>bom</artifactId>
+				<version>${ch.tbmelabs.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-oauth2 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-        <!-- DOTO: Update on release -->
-        <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/server-constants/ -->
-        <dependency>
-            <groupId>ch.tbmelabs</groupId>
-            <artifactId>server-constants</artifactId>
-        </dependency>
-    </dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
 
-    <repositories>
-        <repository>
-            <id>ossrh-snapshot</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-oauth2 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
+		</dependency>
 
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		<!-- DOTO: Update on release -->
+		<!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/server-constants/ -->
+		<dependency>
+			<groupId>ch.tbmelabs</groupId>
+			<artifactId>server-constants</artifactId>
+			<version>${ch.tbmelabs.version}</version>
+		</dependency>
 
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${org.reflections.reflections.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+					<addResources>true</addResources>
+					<finalName>${project.build.finalName}-bootable</finalName>
+					<goal>repackage</goal>
+					<mainClass>${exec.mainClass}</mainClass>
+				</configuration>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>ossrh-snapshot</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
