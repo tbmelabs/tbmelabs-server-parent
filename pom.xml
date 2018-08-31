@@ -95,7 +95,6 @@
 		<dependency>
 			<groupId>ch.tbmelabs</groupId>
 			<artifactId>server-constants</artifactId>
-			<version>${ch.tbmelabs.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
