@@ -149,7 +149,7 @@
     </dependencies>
 
     <build>
-        <defaultGoal>clean compile spring-boot:run</defaultGoal>
+        <defaultGoal>clean compile exec:java</defaultGoal>
         <finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
 
         <resources>
