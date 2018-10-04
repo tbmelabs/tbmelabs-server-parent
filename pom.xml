@@ -3,9 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.tbmelabs</groupId>
     <artifactId>server-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>TBME Labs | Server Parent</name>
@@ -35,11 +33,12 @@
         </developer>
     </developers>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
+    <!-- DOTO: Update on release -->
+    <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/parent/ -->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.5.RELEASE</version>
+        <groupId>ch.tbmelabs</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -65,6 +64,7 @@
         <org.codehaus.mojo.versions-maven-plugin.version>2.5</org.codehaus.mojo.versions-maven-plugin.version>
         <org.jacoco.jacoco-maven-plugin.version>0.8.2</org.jacoco.jacoco-maven-plugin.version>
         <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+        <org.springframework.boot.spring-boot-maven-plugin.version>2.0.5.RELEASE</org.springframework.boot.spring-boot-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -82,6 +82,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -110,6 +116,13 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
+        <!-- DOTO: Update on release -->
+        <!-- https://oss.sonatype.org/content/repositories/snapshots/ch/tbmelabs/actuator-endpoints-security-utils/ -->
+        <dependency>
+            <groupId>ch.tbmelabs</groupId>
+            <artifactId>actuator-endpoints-security-utils</artifactId>
         </dependency>
 
         <!-- DOTO: Update on release -->
@@ -157,6 +170,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${org.springframework.boot.spring-boot-maven-plugin.version}</version>
 
                 <configuration>
                     <goal>repackage</goal>
@@ -169,92 +183,6 @@
                             <goal>repackage</goal>
                             <goal>build-info</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>${org.codehaus.mojo.versions-maven-plugin.version}</version>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${org.jacoco.jacoco-maven-plugin.version}</version>
-
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>default-report</id>
-
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
-
-                <executions>
-                    <execution>
-                        <id>default-test</id>
-
-                        <phase>test</phase>
-
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-
-                        <configuration>
-                            <includes>
-                                <include>**/*Test.java</include>
-                            </includes>
-
-                            <excludes>
-                                <exclude>**/*IntTest.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${org.apache.maven.plugins.maven-failsafe-plugin.version}</version>
-
-                <executions>
-                    <execution>
-                        <id>integration-tests</id>
-
-                        <phase>integration-test</phase>
-
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-
-                        <configuration>
-                            <includes>
-                                <include>**/*IntTest.java</include>
-                            </includes>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -300,79 +228,6 @@
                     <optional>true</optional>
                 </dependency>
             </dependencies>
-        </profile>
-
-        <profile>
-            <id>sign</id>
-
-            <build>
-                <plugins>
-                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
-
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-
-                                <phase>verify</phase>
-
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>build-extras</id>
-
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
-            <build>
-                <plugins>
-                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
-
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
-
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
