@@ -53,7 +53,9 @@
         <ch.tbmelabs.version>1.0.0-SNAPSHOT</ch.tbmelabs.version>
 
         <!-- Dependency configuration -->
+        <org.mockito.mockito-core.version>2.23.0</org.mockito.mockito-core.version>
         <org.reflections.reflections.version>0.9.11</org.reflections.reflections.version>
+        <net.bytebuddy.byte-buddy.version>1.9.1</net.bytebuddy.byte-buddy.version>
 
         <!-- Plugin configuration -->
         <org.apache.maven.plugins.maven-failsafe-plugin.version>2.22.0</org.apache.maven.plugins.maven-failsafe-plugin.version>
@@ -133,17 +135,21 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
+            <!-- Since JDK11 -->
+            <version>${net.bytebuddy.byte-buddy.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <!-- Since JDK11 -->
+            <version>${org.mockito.mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
 
