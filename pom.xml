@@ -42,13 +42,6 @@
     </parent>
 
     <properties>
-        <!-- General configuration -->
-        <buildNumber>${maven.build.timestamp}</buildNumber>
-        <java.version>11</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <!-- TBME Labs specific configuration -->
         <ch.tbmelabs.version>1.0.0-SNAPSHOT</ch.tbmelabs.version>
 
@@ -182,6 +175,7 @@
                 <configuration>
                     <goal>repackage</goal>
                     <mainClass>${start-class}</mainClass>
+                    <classifier>exec</classifier>
                 </configuration>
 
                 <executions>
