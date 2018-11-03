@@ -38,33 +38,14 @@
     <parent>
         <groupId>ch.tbmelabs</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2-SNAPSHOT</version>
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
-        <!-- TBME Labs specific configuration -->
-        <ch.tbmelabs.version>1.0.0</ch.tbmelabs.version>
-
         <!-- Dependency management -->
-        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
-
-        <!-- Dependency configuration -->
-        <mockito-core.version>2.23.0</mockito-core.version>
-        <reflections.version>0.9.11</reflections.version>
-        <byte-buddy.version>1.9.1</byte-buddy.version>
-
-        <!-- Plugin configuration -->
-        <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-        <guava.version>27.0-jre</guava.version>
-        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
-        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
-        <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-        <spring-boot-maven-plugin.version>2.0.6.RELEASE</spring-boot-maven-plugin.version>
+        <keycloak.version>4.5.0.Final</keycloak.version>
+        <tbmelabs.version>1.0.1-SNAPSHOT</tbmelabs.version>
     </properties>
 
     <dependencyManagement>
@@ -78,11 +59,20 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- https://search.maven.org/search?q=a:keycloak-adapter-bom -->
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- https://oss.sonatype.org/service/local/repositories/releases/content/ch/tbmelabs/bom/ -->
             <dependency>
                 <groupId>ch.tbmelabs</groupId>
                 <artifactId>bom</artifactId>
-                <version>${ch.tbmelabs.version}</version>
+                <version>${tbmelabs.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -94,24 +84,25 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-undertow -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-kafka -->
+        <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-undertow-adapter -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-kafka</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-undertow-adapter</artifactId>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix -->
@@ -126,12 +117,6 @@
             <artifactId>actuator-endpoints-security-utils</artifactId>
         </dependency>
 
-        <!-- https://oss.sonatype.org/service/local/repositories/releases/content/ch/tbmelabs/server-constants/ -->
-        <dependency>
-            <groupId>ch.tbmelabs</groupId>
-            <artifactId>server-constants</artifactId>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -139,50 +124,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <!-- Since JDK11 -->
-            <version>${byte-buddy.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <!-- Since JDK11 -->
-            <version>${mockito-core.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-stream-test-support -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-test-support</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -195,7 +140,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec-maven-plugin.version}</version>
 
                 <configuration>
                     <mainClass>${start-class}</mainClass>
@@ -206,7 +150,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin.version}</version>
 
                 <configuration>
                     <goal>repackage</goal>
@@ -231,7 +174,6 @@
                 <plugin>
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
 
                     <extensions>true</extensions>
 
@@ -277,22 +219,6 @@
             <releases>
                 <enabled>false</enabled>
             </releases>
-        </repository>
-
-        <repository>
-            <id>apache</id>
-            <name>Maven Central</name>
-            <url>https://repo.maven.apache.org/maven2/</url>
-        </repository>
-
-        <repository>
-            <id>ossrh</id>
-            <name>Sonatype Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
