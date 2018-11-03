@@ -111,6 +111,12 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
         <!-- https://oss.sonatype.org/service/local/repositories/releases/content/ch/tbmelabs/actuator-endpoints-security-utils/ -->
         <dependency>
             <groupId>ch.tbmelabs</groupId>
