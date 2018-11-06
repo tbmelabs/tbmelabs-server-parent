@@ -50,15 +50,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- https://search.maven.org/search?q=a:keycloak-adapter-bom -->
             <dependency>
                 <groupId>org.keycloak.bom</groupId>
@@ -99,10 +90,10 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-2-adapter -->
+        <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter -->
         <dependency>
             <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-spring-boot-2-adapter</artifactId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-undertow-adapter -->
