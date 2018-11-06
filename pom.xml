@@ -45,11 +45,21 @@
     <properties>
         <!-- Dependency management -->
         <keycloak.version>4.5.0.Final</keycloak.version>
+        <spring-cloud-kubernetes.version>0.3.0.RELEASE</spring-cloud-kubernetes.version>
         <tbmelabs.version>1.0.1-SNAPSHOT</tbmelabs.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-kubernetes-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
+                <version>${spring-cloud-kubernetes.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- https://search.maven.org/search?q=a:keycloak-adapter-bom -->
             <dependency>
                 <groupId>org.keycloak.bom</groupId>
@@ -108,10 +118,10 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-kubernetes-discovery -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <artifactId>spring-cloud-kubernetes-discovery</artifactId>
         </dependency>
 
         <!-- https://oss.sonatype.org/service/local/repositories/releases/content/ch/tbmelabs/actuator-endpoints-security-utils/ -->
