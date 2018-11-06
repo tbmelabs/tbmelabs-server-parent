@@ -112,16 +112,10 @@
             <artifactId>keycloak-undertow-adapter</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-kubernetes-all -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-kubernetes-discovery -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-kubernetes-discovery</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
         </dependency>
 
         <!-- https://oss.sonatype.org/service/local/repositories/releases/content/ch/tbmelabs/actuator-endpoints-security-utils/ -->
